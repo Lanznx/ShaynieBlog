@@ -1,13 +1,63 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import smiling_sea from './Assets/smiling_sea.jpg';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Home from "./Pages/Home/HomePage";
+import About from "./Pages/About/AboutPage";
+import ArticleList from "./Pages/ArticleList/ArticleListPage";
+import Article from "./Pages/Article/ArticlePage";
+import Header from "./Pages/components/Header";
+import Footer from "./Pages/components/Footer";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Box } from "@mui/material";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#AAC7C4",
+      contrastText: "#000",
+    },
+    secondary: {
+      main: "#fff",
+      contrastText: "#000",
+    },
+  },
+  typography: {
+    allVariants: {
+      fontFamily: [
+        '"Noto Sans TC"',
+        "-apple-system",
+        "BlinkMacSystemFont",
+        '"Segoe UI"',
+        "Roboto",
+        '"Helvetica Neue"',
+        "Arial",
+        "sans-serif",
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(","),
+    },
+  },
+});
+
 root.render(
-  <React.StrictMode>
-    <h1>哈囉，請叫我 Shaynie ! </h1>
-    <img src={smiling_sea} alt="smiling_sea" width={500} height={350}/>
-    <h1>哩賀，哇洗蔡紗</h1>
-    
-  </React.StrictMode>
+  <React.Fragment>
+    <ThemeProvider theme={theme}>
+      <Header />
+      <Box mt={10} bgcolor="inherit">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/articles" element={<ArticleList />} />
+            <Route path="/articles/:id" element={<Article />} />
+          </Routes>
+        </BrowserRouter>
+      </Box>
+
+      <Footer />
+    </ThemeProvider>
+  </React.Fragment>
 );
