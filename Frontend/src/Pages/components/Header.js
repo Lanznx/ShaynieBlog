@@ -16,14 +16,22 @@ export default function Header() {
             flexWrap: "wrap",
           }}
         >
-          <Grid container  sx={{alignContent: "space-between"}}>
+          <Grid container sx={{ alignContent: "space-between" }}>
             <IconButton color="inherit" aria-label="menu">
               <img src={logo} alt="smiling_sea" width={30} height={30} />
             </IconButton>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">About</Button>
-            <Button color="inherit">Articles</Button>
-            <Button color="inherit">Video</Button>
+            <Button color="inherit" onClick={() => {
+              window.location.href = "/"
+            }}>Home</Button>
+            <Button color="inherit" onClick={() => {
+              window.location.href = "/about"
+            }}>About</Button>
+            <Button color="inherit" onClick={() => {
+              window.location.href = "/articles"
+            }}>Articles</Button>
+            <Button color="inherit" onClick={() => {
+              window.location.href = "/videos"
+            }}>Videos</Button>
           </Grid>
         </Toolbar>
       </AppBar>
